@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let cnt = 0;//글번호
+
+//글추가
+const add = () => {
+	cnt++;
+	let writer = f1.writer.value;
+	let content = f1.content.value;
+	let pwd = f1.pwd.value;
+	//let article = {'num':cnt, 'writer':writer, 'content':content, 'pwd':pwd};
+	//글 하나 출력할 div 요소 생성
+	let div = document.createElement("div");
+	div.setAttribute("id", "div_"+cnt);
+// 	div.setAttribute("num", cnt);
+// 	div.setAttribute("writer", writer);
+// 	div.setAttribute("content", content);
+// 	div.setAttribute("pwd", pwd);
+	div.style.border = 'solid 2px black';
+	let html = "글번호:"+cnt+"<br/>";
+	html += "작성자:"+writer+"<br/>";
+	html += "내용:"+content+"<br/>";
+	html += "<input type='button' value='수정' onclick=editForm("+cnt+",'"+writer+"','"+content+"','"+pwd+"')>";
+	html += "<input type='button' value='삭제' onclick='del("+cnt+")'>";
+	div.innerHTML = html;
+	
+	let list = document.getElementById("list");
+	list.appendChild(div);
+	clear();
+}
+
+const clear = () => {
+	f1.writer.value = "";
+	f1.content.value = "";
+	f1.pwd.value = "";
+}
+
+const editForm = (num, writer, content, pwd) => {
+
+	let eform = document.getElementById("f2");//수정폼
+	let div = document.getElementById("div_"+num);
+	let body = document.getElementsByTagName("body")[0];
+	body.removeChild(eform);
+	div.appendChild(eform);
+
+	let aNum = document.getElementById("num");
+	aNum.innerHTML = num;
+	let awriter = document.getElementById("writer2");
+	awriter.value = writer;
+	let acontent = document.getElementById("content2");
+	acontent.value = content;
+	eform.style.display = '';
+}
+
+const cancel = () => {
+	let eform = document.getElementById("f2");//수정폼
+	let aNum = document.getElementById("num");
+	let num = aNum.innerHTML;
+	let div = document.getElementById("div_"+num);
+	let body = document.getElementsByTagName("body")[0];
+	div.removeChild(eform);
+	body.appendChild(eform);
+	
+	aNum.innerHTML = "";
+	let awriter = document.getElementById("writer2");
+	awriter.value = "";
+	let acontent = document.getElementById("content2");
+	acontent.value = "";
+	eform.style.display = 'none';
+	
+	
+}
+</script>
+</head>
+<body>
+<h3>방명록</h3>
+<h4>작성폼</h4>
+<form name="f1" id="f1" action="">
+	작성자:<input type="text" name="writer" id="writer"><br/>
+	내용:<textarea rows=5 cols=25 name="content" id="content"></textarea><br/>
+	글비번:<input type="password" name="pwd" id="pwd"><br/>
+	<input type="button" value="작성" onclick="add()">
+</form>
+<h4>작성글</h4>
+<div id="list">
+
+</div>
+<form name="f2" id="f2" action="" style="display:none">
+	글번호:<span id="num"></span><br/>
+	작성자:<input type="text" name="writer2" id="writer2"><br/>
+	내용:<textarea rows=5 cols=25 name="content2" id="content2"></textarea><br/>
+	글비번:<input type="password" name="pwd2" id="pwd2"><br/>
+	<input type="button" value="수정완료" onclick="edit()">
+	<input type="button" value="수정취소" onclick="cancel()">
+</form>
+</body>
+</html>

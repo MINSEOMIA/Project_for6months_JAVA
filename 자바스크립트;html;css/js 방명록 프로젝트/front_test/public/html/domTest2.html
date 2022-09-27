@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=()=>{
+	let e1 = document.getElementsByClassName("t2");
+	for(i=0;i<e1.length;i++){
+		e1[i].innerHTML = i*20;
+	}
+	
+	let e2 = document.getElementById("tr1");
+	e2.bgColor = 'orange';
+	
+	let e3 = document.getElementsByClassName("t1");
+	for(i=0;i<e3.length;i++){
+		e3[i].setAttribute("id", "td_"+i);
+	}
+	for(i=0;i<e3.length;i++){
+		console.log(e3[i].id);
+	}
+	for(i=0;i<e3.length;i++){
+		e3[i].style.color='green';
+	}
+}
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr id="tr1">
+			<td class="t1">1</td>
+			<td class="t1">2</td>
+			<td class="t1">3</td>
+		</tr>
+		<tr id="tr2">
+			<td class="t2"></td>
+			<td class="t2"></td>
+			<td class="t2"></td>
+		</tr>
+	</table>
+</body>
+</html>

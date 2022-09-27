@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+input[type=button]{
+	width:50px;
+	height:50px;
+}
+
+input[type=number]{
+	width:210px;
+}
+</style>
+<script>
+let ch = ['1', '2', '3', '+', '4', '5', '6', '-', '7', '8', '9', '*', '0', 'C', '=', '/'];
+window.onload=function(){
+	let tbl = document.getElementById("tbl");
+	let html = "";
+	for(i=0;i<ch.length;i++){
+		if(i%4==0){
+			html += "<tr>";
+		}
+		html += "<td><input type='button' value='"+ch[i]+"' onclick=f(this.value)></td>";
+		if(i%4==3){
+			html += "</tr>";
+		}
+	}
+	tbl.innerHTML += html;
+}
+let num1=0, num2=0, op='';
+//isNaN(): is not a number 함수. 숫자 아니면 true, 숫자 맞으면 false
+function f(val){
+	let el = document.getElementById("res");
+	if(isNaN(val)){
+		//alert(val+":연산자");	
+		if(val=='='){
+			num2 = parseInt(el.value);
+			eq();
+		}else if(val=='C'){
+			clear();
+		}else{
+			op = val;
+			if(el.value==''){
+				num1=0;
+			}else{
+				num1 = parseInt(el.value);
+				el.value='';
+			}
+		}
+	}else{
+		//alert(val+":숫자");		
+		el.value += val;
+	}
+}
+
+function eq(){
+	let el = document.getElementById("res");
+	let calc = 0;
+	switch(op){
+	case '+':
+		calc = num1 + num2;
+		break;
+	case '-':
+		calc = num1 - num2;
+		break;
+	case '*':
+		calc = num1 * num2;
+		break;
+	case '/':
+		if(num2==0){
+			alert('0으로 나눌 수 없음. 계산 중단됨');
+			clear();
+			return;
+		}
+		calc = num1 / num2;
+		break;
+	}
+	el.value = calc;
+}
+
+function clear(){
+	num1=0;
+	num2=0;
+	op='';
+	let el = document.getElementById("res");
+	el.value = '';
+}
+</script>
+</head>
+<body>
+<h3>계산기</h3>
+<table border="1" id="tbl">
+<tr><td colspan="4"><input type="number" name="res" id="res"></td></tr>
+
+</table>
+</body>
+</html>

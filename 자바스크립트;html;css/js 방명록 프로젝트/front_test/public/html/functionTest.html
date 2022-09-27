@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+const add = (n1, n2) =>{
+	return n1+n2;
+}
+
+window.onload = () => {
+	let res = add(1,2);
+	alert(res);
+}
+const test = (val, idx)=> {
+	alert(idx+':'+val);
+}
+</script>
+</head>
+<body>
+<script>
+let arr = ['aaa', 'bbb', 'ccc'];
+arr.forEach(test);`
+try{
+	document.write("예외 발생 전");
+	let val =parseInt('asdf');
+	document.write("예외 발생 후");
+}catch(error){
+	alert(error.message);
+}
+</script>
+</body>
+</html>

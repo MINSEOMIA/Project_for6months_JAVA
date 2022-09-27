@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let cnt = 0;//글번호
+
+//글추가
+const add = () => {
+	cnt++;
+	let writer = f1.writer.value;
+	let content = f1.content.value;
+	let pwd = f1.pwd.value;
+	let article ="{num:'"+cnt+"',writer:'"+writer+"',content:'"+content+"',pwd:'"+pwd+"'}";
+	let div = document.createElement("div");
+	div.setAttribute("id", "div_"+cnt);
+	div.style.border = 'solid 2px black';
+	let html = "글번호:"+cnt+"<br/>";
+	html += "작성자:"+writer+"<br/>";
+	html += "내용:"+content+"<br/>";
+	html += "<input type='button' value='수정' onclick=editForm("+article+")>";
+	html += "<input type='button' value='삭제' onclick=del("+article+")>";
+	div.innerHTML = html;
+	
+	let list = document.getElementById("list");
+	list.appendChild(div);
+	clear();
+}
+
+const clear = () => {
+	f1.writer.value = "";
+	f1.content.value = "";
+	f1.pwd.value = "";
+}
+
+//수정폼을 잘라서 원글 밑에 붙여줌
+const editForm = (article) => {
+	let eform = document.getElementById("f2");//수정폼
+	let div = document.getElementById("div_"+article.num);
+	let body = document.getElementsByTagName("body")[0];
+	body.removeChild(eform);
+	div.appendChild(eform);
+	
+	let aNum = document.getElementById("num");
+	aNum.innerHTML = article.num;
+	let awriter = document.getElementById("writer2");
+	awriter.value = article.writer;
+	let acontent = document.getElementById("content2");
+	acontent.value = article.content;
+	let hpwd = document.getElementById("hpwd");
+	hpwd.value = article.pwd;
+	eform.style.display = '';//화면에 보이게 설정
+}
+//원글 밑에 있는 수정폼을 원래 자리(body 자식으로 보냄)
+const cancel = () => {
+	let eform = document.getElementById("f2");//수정폼
+	let aNum = document.getElementById("num");
+	let num = aNum.innerHTML;
+	let div = document.getElementById("div_"+num);
+	let body = document.getElementsByTagName("body")[0];
+	div.removeChild(eform);
+	body.appendChild(eform);
+	
+	let apwd = document.getElementById("pwd2");
+	apwd.value="";
+	eform.style.display = 'none';
+}
+
+const edit = () => {
+	if(f2.pwd2.value != f2.hpwd.value){
+		alert('글 비밀번호 불일치. 수정 취소됨');
+		cancel();
+		return;
+	}
+	
+	//수정하는 글 번호
+	let aNum = document.getElementById("num");
+	let num = aNum.innerHTML;
+	
+	//원글 div
+	let div = document.getElementById("div_"+num);
+	let writer = f2.writer2.value;
+	let content = f2.content2.value;
+	let article ="{num:'"+num+"',writer:'"+writer+"',content:'"+content+"',pwd:'"+f2.hpwd.value+"'}";
+	
+	let html = "글번호:"+num+"<br/>";
+	html += "작성자:"+writer+"<br/>";
+	html += "내용:"+content+"<br/>";
+	html += "<input type='button' value='수정' onclick=editForm("+article+")>";
+	html += "<input type='button' value='삭제' onclick=del("+article+")>";
+	cancel();
+	div.innerHTML = html;
+}
+const del = (article) => {
+	alert(article.num);
+	alert(article.pwd);
+	let p = prompt("글비밀번호");
+	if(p!=article.pwd){
+		alert("글 비밀번호 불일치. 삭제 취소");
+		return;
+	}
+	let div = document.getElementById("div_"+article.num);
+	let parent = div.parentNode;
+	parent.removeChild(div);
+}
+</script>
+</head>
+<body>
+	<h3>방명록</h3>
+	<h4>작성폼</h4>
+	<form name="f1" id="f1" action="">
+		작성자:<input type="text" name="writer" id="writer"><br /> 내용:
+		<textarea rows=5 cols=25 name="content" id="content"></textarea>
+		<br /> 글비번:<input type="password" name="pwd" id="pwd"><br />
+		<input type="button" value="작성" onclick="add()">
+	</form>
+	<h4>작성글</h4>
+	<div id="list"></div>
+	<form name="f2" id="f2" action="" style="display: none">
+		글번호:<span id="num"></span><br /> 작성자:<input type="text"
+			name="writer2" id="writer2"><br /> 내용:
+		<textarea rows=5 cols=25 name="content2" id="content2"></textarea>
+		<br /> 글비번:<input type="password" name="pwd2" id="pwd2"><br />
+		<input type="button" value="수정완료" onclick="edit()"> <input
+			type="button" value="수정취소" onclick="cancel()"> <input
+			type="hidden" name="hpwd" id="hpwd">
+	</form>
+</body>
+</html>

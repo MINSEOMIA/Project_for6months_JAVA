@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload=()=>{//es6 
+	let new_el = document.createElement("p");
+	let txt = document.createTextNode("This is new.");
+	new_el.appendChild(txt);
+	let div = document.getElementById("list");
+	div.appendChild(new_el);
+}
+let cnt = 0;
+const addbtn = () => {
+	cnt++;
+	let new_btn = document.createElement("input");
+	new_btn.setAttribute("id", "btn_"+cnt);
+	new_btn.setAttribute("type", "button");
+	new_btn.setAttribute("value", "삭제_"+cnt);
+	new_btn.setAttribute("onclick", "delbtn('btn_"+cnt+"')");
+	new_btn.style.width = '150px';
+	new_btn.style.height = '50px';
+	new_btn.style.backgroundColor = 'orange';
+	let div = document.getElementById("list");
+	div.appendChild(new_btn);
+	div.appendChild(document.createElement("br"));
+}
+
+const delbtn = (btnId) => {
+	let div = document.getElementById("list");
+	let btn = document.getElementById(btnId);
+	div.removeChild(btn);
+}
+</script>
+</head>
+<body>
+	<input type='button' value='추가' onclick='addbtn()'>
+	<div id="list">
+		<h1 id="h1">aaa</h1>
+		<p id="p1">bbb</p>
+	</div>
+</body>
+</html>

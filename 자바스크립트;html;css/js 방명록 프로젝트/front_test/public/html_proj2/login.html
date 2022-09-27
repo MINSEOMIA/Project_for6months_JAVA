@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <title>WELCOME TO Congsoon World </title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet"> <!--폰트링크 -->
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .mytitle {
+            width: 100%;
+            height: 250px;
+			
+			height: 726px;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210705_154%2F16254131796397xlm3_JPEG%2F26548959358243731_2012888763.jpg&type=sc960_832');
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mytitle > button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+
+        .mytitle > button:hover {
+            border: 2px solid white;
+        }
+    </style>
+    <script>
+    function GO() {
+        window.open('http://localhost:8080/front_test/html_proj2/try_minihome_1_5.html')
+	}
+    </script>
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>내 생애 최고의 콩순이</h1>
+    	<p>
+    		ID: <input type="text" />
+    	</p>
+    	<p>
+    	    PW: <input type="password" />
+    	</p>
+    	<button onclick="GO()" type="button" class="btn btn-outline-dark">콩순이 만나러가기</button> <!--버튼 부트스트랩 -->
+ 		<button onclick="javascript:alert('지금은 가입기간이 아닙니다')" type="button" class="btn btn-outline-dark">새 친구되기</button> <!--  전송버튼 -->
+ 		<!--<button onclick="NEW()" type="button" class="btn btn-outline-dark" disabled>새 친구되기</button> <!--  전송버튼 -->
+ 	</div>
+ 	 
+</body>
+</html>

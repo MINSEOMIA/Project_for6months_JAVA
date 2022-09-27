@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function test(){
+	document.write("===test 함수===<br/>");
+	var a=10, b=20;
+	{
+		var c=30;  //test함수내에서 블록 밖에서도 사용가능
+		var b=40;  //블록 밖에서 선언한 b를 덮어씀
+		document.write("블록내에서 출력 / a:"+a+", b:"+b+", c:"+c+"<br/>");
+	}
+	
+	document.write("블록밖에서 출력 / a:"+a+", b:"+b+", c:"+c+"<br/>");
+	d=50;//변수 선언없이 사용하면 전역변수로 생성됨
+	document.write("d:"+d+"<br/>");
+}
+
+function test2(){
+	document.write("===test2 함수===<br/>");
+	let a=10, b=20;
+	{
+		let c=30;
+		let b=40; //새로운 b가 블록내에 만들어짐
+		document.write("블록내에서 출력 / a:"+a+", b:"+b+", c:"+c+"<br/>");
+	}
+	
+	document.write("블록밖에서 출력 / a:"+a+", b:"+b+"<br/>");
+	//document.write("c:"+c+"<br/>");//에러
+	//d=50;
+	document.write("d:"+d+"<br/>");
+}
+</script>
+<script src="myjs.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+test();
+test2();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//함수 f2정의
+function b(){
+	//parseInt("123") 문자열 정수를 정수로 변환
+	let score = parseInt(f2.n1.value); //text 박스에 입력한 값
+	alert("입력값:" +score); 
+	let str = "";
+	if(score>=90){
+		str="A";
+	}else if(score>=80){
+		str="B";
+	}else if(score>=70){
+		str="C";
+	}else{
+		str="F";
+	}
+ 	//다큐먼트 요소에서 id가 res1인 요소 한개를 찾아서 반환
+ 	let res= document.getElementById("res2");
+	//innerHTML 속성은 태그 내용 의미. 이 속성에 값을 쓰면 태그 내용로 들어가고
+	//이 속성의 값을 읽으면 태그 내용을 읽어옴
+ 	res.innerHTML=str; //id가 res1인 영역으로 str값을 출력해줌 
+}
+</script>
+</head>
+<body>
+<h3>학점 발표</h3>
+<form name="f2">
+
+score: <input type="text" name="n1">
+<input type= "button" value="확인" onclick="b()">
+<div id="res2"></div>
+
+</form>
+</body>
+</html>

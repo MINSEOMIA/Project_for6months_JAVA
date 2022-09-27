@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3> 입력양식 테스트 </h3>
+<form action="a.jsp" method="post">
+id:<input type="text" name="id" id="id"> <br/> <!--name은 중복가능 id는 고유하게 한번만-->
+name:<input type="text" name="name" id="name"> <br/>
+pwd: <input type="password" name="pwd" id="pwd"><br/>
+성별:<input type="radio" name="gender" value="f">여 <!--name을 gender1 gender2로 두면 다른그룹으로 돼서 둘다 복수선택가능하게됨-->
+<input type="radio" name="gender" value="m">남<br/>
+좋아하는 거 모두 선택:
+<input type="checkbox" name="favorite" value="1">여행
+<input type="checkbox" name="favorite"value="2">등산
+<input type="checkbox" name="favorite"value="3">운동
+<input type="checkbox" name="favorite"value="4">공연<br/>
+학년:
+<select name="grade">
+	<option value="g1">1학년</option>
+	<option value="g1">2학년</option>
+	<option value="g1">3학년</option>
+	<option value="g1">4학년</option>
+</select>><br/>
+<input type="button" value="학생만클릭" onclick="javascript:alert('button click')"><br/> <!--onclick: 클릭선택하면 뜨는 메세지(내용)-->
+<textarea cols="45" rows="15">가입인사</textarea><br/>
+<input type="reset" value="취소"> <!--  초기화버튼 -->
+<input type="submit" value="가입"> <!--  전송버튼 -->
+<br/>
+날짜선택: <input type="date"><br/>
+파일선택: <input type="file"><br/>
+히든은 화면에 안보임. 서버에 값 전송<input type="hidden">
+색상선택: <input type="color">
+</form>
+
+</body>
+</html>

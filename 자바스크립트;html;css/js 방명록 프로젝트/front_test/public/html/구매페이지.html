@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//장바구니
+let arr=[];
+
+	function a(num) {
+		//select 요소 추출
+		const element = document.getElementById("cnt_"+num);
+		//주문 수량
+		let cnt = parseInt(element.value);
+
+		//id가 price인 span태그 읽어옴
+		const price_el = document.getElementById("price_"+num);
+		//price요소의 내용을 읽음(가격)
+		let price = parseInt(price_el.innerHTML);
+
+		//id가 res인 span태그 읽어옴
+		const res_el = document.getElementById("res_"+num);
+		//결제 금액 계산하여 res에 출력
+		res_el.innerHTML = price * cnt;
+
+	}
+	
+function b(path, num){
+	const el = document.getElementById("imgbig_"+num);
+	el.src = path;
+}
+
+function c(num){//num: 장바구니에 담을 상품번호
+	let prod = [];
+	
+	prod[0] = num;
+	prod[1] = document.getElementById("prodName_"+num).innerHTML;
+	prod[2] = document.getElementById("cnt_"+num).value;
+	prod[3] = document.getElementById("res_"+num).innerHTML;
+	
+	arr[arr.length]=prod;
+}
+//arr=[[1, '루피', 2, 3000], [2, '크롱', 1, 10000]]
+function d(){
+	const el = document.getElementById("myList");
+	let html="<table border='1'><tr><td>제품번호</td><td>제품명</td><td>주문수량</td><td>결제금액</td></tr>";
+	for(i=0;i<arr.length;i++){
+		let prod = arr[i];
+		html += "<tr>";
+		for(j=0;j<prod.length;j++){
+			html += "<td>";
+				html += prod[j];
+			html += "</td>";
+		}
+		html += "</tr>";
+	}
+	html += "</table>";
+	
+	el.innerHTML = html;
+}
+</script>
+</head>
+<body>
+	<h3>구매 상세 페이지</h3>
+	<table border="1">
+		<tr>
+			<td rowspan="5">
+				<table border="1">
+					<tr>
+						<td colspan="3">
+							<img id="imgbig_1" src="/front_test/public/img/스티커사진.jfif" style="width: 200px; height: 200px">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="../img/lufy.jpg" style="width:65px;height:65px" onmouseover="b('../img/lufy.jpg', 1)"> 
+						</td>
+						<td>
+							<img src="../img/naver.jpg" style="width:65px;height:65px" onmouseover="b('../img/naver.jpg', 1)"> 
+						</td>
+						<td>
+							<img src="../img/daum.png" style="width:65px;height:65px" onmouseover="b('../img/daum.png', 1)"> 
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>상품명: <span id="prodName_1">루피</span></td>
+		</tr>
+		<tr>
+			<td>상세설명: 노는게 제일 좋아</td>
+		</tr>
+		<tr>
+			<td>가격: <span id="price_1">5000</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				주문수량(최대5개): 
+				<select name="cnt_1" onclick="a(1)" id="cnt_1">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>결제금액:<span id="res_1"></span>
+			<br/><input type="button" value="장바구니에 담기" onclick="c(1)">
+			</td>
+		</tr>
+	</table>
+	<!-- 2번 상품 -->
+	<table border="1">
+		<tr>
+			<td rowspan="5">
+				<table border="1">
+					<tr>
+						<td colspan="3">
+							<img id="imgbig_2" src="../img/lufy.jpg" style="width: 200px; height: 200px">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="../img/lufy.jpg" style="width:65px;height:65px" onmouseover="b('../img/lufy.jpg', 2)"> 
+						</td>
+						<td>
+							<img src="../img/naver.jpg" style="width:65px;height:65px" onmouseover="b('../img/naver.jpg', 2)"> 
+						</td>
+						<td>
+							<img src="../img/daum.png" style="width:65px;height:65px" onmouseover="b('../img/daum.png', 2)"> 
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>상품명: <span id="prodName_2">뽀로로</span></td>
+		</tr>
+		<tr>
+			<td>상세설명: 밥먹는게 제일 좋아</td>
+		</tr>
+		<tr>
+			<td>가격: <span id="price_2">6000</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				주문수량(최대5개): 
+				<select name="cnt_2" onclick="a(2)" id="cnt_2">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>결제금액:<span id="res_2"></span>
+			<br/><input type="button" value="장바구니에 담기" onclick="c(2)">
+			</td>
+		</tr>
+	</table>
+	<!-- 3번 상품 -->
+	<table border="1">
+		<tr>
+			<td rowspan="5">
+				<table border="1">
+					<tr>
+						<td colspan="3">
+							<img id="imgbig_3" src="../img/lufy.jpg" style="width: 200px; height: 200px">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="../img/lufy.jpg" style="width:65px;height:65px" onmouseover="b('../img/lufy.jpg', 3)"> 
+						</td>
+						<td>
+							<img src="../img/naver.jpg" style="width:65px;height:65px" onmouseover="b('../img/naver.jpg', 3)"> 
+						</td>
+						<td>
+							<img src="../img/daum.png" style="width:65px;height:65px" onmouseover="b('../img/daum.png', 3)"> 
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>상품명: <span id="prodName_3">크롱</span></td>
+		</tr>
+		<tr>
+			<td>상세설명: 자는게 제일 좋아</td>
+		</tr>
+		<tr>
+			<td>가격: <span id="price_3">7000</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				주문수량(최대5개): 
+				<select name="cnt_3" onclick="a(3)" id="cnt_3">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>결제금액:<span id="res_3"></span>
+			<br/><input type="button" value="장바구니에 담기" onclick="c(3)">
+			</td>
+		</tr>
+	</table>
+	<!-- 4번 상품 -->
+	<table border="1">
+		<tr>
+			<td rowspan="5">
+				<table border="1">
+					<tr>
+						<td colspan="3">
+							<img id="imgbig_4" src="../img/lufy.jpg" style="width: 200px; height: 200px">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="../img/lufy.jpg" style="width:65px;height:65px" onmouseover="b('../img/lufy.jpg', 4)"> 
+						</td>
+						<td>
+							<img src="../img/naver.jpg" style="width:65px;height:65px" onmouseover="b('../img/naver.jpg', 4)"> 
+						</td>
+						<td>
+							<img src="../img/daum.png" style="width:65px;height:65px" onmouseover="b('../img/daum.png', 4)"> 
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>상품명: <span id="prodName_4">에디</span></td>
+		</tr>
+		<tr>
+			<td>상세설명: 사막이 제일 좋아</td>
+		</tr>
+		<tr>
+			<td>가격: <span id="price_4">8000</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				주문수량(최대5개): 
+				<select name="cnt_4" onclick="a(4)" id="cnt_4">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>결제금액:<span id="res_4"></span>
+			<br/><input type="button" value="장바구니에 담기" onclick="c(4)">
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<input type="button" value="내 장바구니보기" onclick="d()">
+	<div id="myList"></div>
+</body>
+</html>

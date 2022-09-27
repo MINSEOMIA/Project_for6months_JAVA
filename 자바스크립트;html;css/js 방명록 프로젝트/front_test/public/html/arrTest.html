@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//전역변수
+let arr = [];  //let arr = new Array();
+
+function add(val){
+	arr[arr.length]=val;
+	alert(arr);
+}
+
+function print(){
+	let el = document.getElementById("res");
+	el.innerHTML = "";
+	for(i=0;i<arr.length;i++){
+		el.innerHTML += arr[i]+"<br/>";
+	}
+}
+</script>
+</head>
+<body>
+<form name="f1">
+num:<input type="text" name="t1">
+<input type="button" value="등록" onclick="add(this.form.t1.value)">
+<input type="button" value="출력" onclick="print()">
+</form> 
+<div id="res"></div>
+</body>
+</html>

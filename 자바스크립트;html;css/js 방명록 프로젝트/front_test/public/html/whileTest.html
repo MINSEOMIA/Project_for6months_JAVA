@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	let flag = true;
+	let msg = "";
+	while(flag){//무한루프
+		//prompt() . 입력창이 있는 alert
+		msg = prompt("메시지를 입력하시오");
+		let el = document.getElementById("content");
+		el.innerHTML += msg+"<br/>";
+		
+		//confirm(). 확인/취소 버튼 있는 alert. 확인누르면 true반환, 아니면 false반환
+		flag = confirm("계속 입력하겠나?");
+	}
+}
+</script>
+</head>
+<body>
+<div id="content">
+
+</div>
+
+</body>
+</html>

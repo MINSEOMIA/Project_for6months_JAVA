@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>홈페이지1</title>
+<meta charset="utf-8">
+<style type="text/css">
+table {
+border-collapse: collapse;
+}
+.bar {
+width: 640px;
+}
+.mainManu {
+font-style: center;
+width: 640px;
+}
+.jo {
+display: none;
+}
+.hi{
+display: none;
+}
+.ju{
+display: none;
+}
+#m1 {
+padding-left: 35px;
+}
+</style>
+<script language="javascript">
+function showMenu(val) {
+var img1 = document.getElementById("nob")
+var img2 = document.getElementById("jo")
+var img3 = document.getElementById("hi")
+var img4 = document.getElementById("ju")
+
+if (val == "nb") {
+img1.style.display = "block";
+img2.style.display = "none";
+img3.style.display = "none";
+img4.style.display = "none";
+}
+
+if (val == "job") {
+img1.style.display = "none";
+img2.style.display = "block";
+img3.style.display = "none";
+img4.style.display = "none";
+}
+
+if (val == "hib") {
+img1.style.display = "none";
+img2.style.display = "none";
+img3.style.display = "block";
+img4.style.display = "none";
+}
+
+if (val == "jub") {
+img1.style.display = "none";
+img2.style.display = "none";
+img3.style.display = "none";
+img4.style.display = "block";
+}
+}
+</script>
+</head>
+<body>
+<!-- 화면전체 시작 -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><td align="center">
+<!-- 로고와 검색, 로그인 부분 시작 -->
+<table class="bar" border="0" cellpadding="0" cellspacing="0">
+<tr><td><img src="images/naver1.jpg"></td><td>만화|웹소설</td><td>검색</td><td width="230"></td><td>로그인</td></tr>
+</table>
+<!-- 로고와 검색, 로그인 부분 종료 -->
+</td></tr>
+<tr>
+<td align="center">
+<!-- 메인메뉴 시작 -->
+<table height="2">
+<table border="0" class="mainManu">
+<tr bgcolor="black">
+<td id="m1"><font color="white">만화홈</font></td>
+<td><font color="white">웹툰</font></td>
+<td><font color="white">베스트도전</font></td>
+<td><font color="white">도전만화</font></td>
+<td><font color="white">마이페이지</font></td></tr>
+</table>
+<table border="1">
+<tr bgcolor="darkgray">
+<td><img src="images/todaywt1.jpg"></td>
+<td>
+<table border="1">
+<!-- 온클릭이미지 시작-->
+<tr>
+<td>
+<img src="https://semantic-ui.com/images/logo.png" width="420" class="nob" id="nob">
+<img src="https://uiuxassets.com/wp-content/uploads/app-icon-keynote.png" width="420" class="jo" id="jo">
+<img src="https://uiuxassets.com/wp-content/uploads/app-icon-photoshop.png" width="420" class="hi" id="hi">
+<img src="http://www.independent.co.uk/sites/all/themes/ines_themes/independent_theme/img/twitter.png" width="420" class="ju" id="ju">
+</td>
+</tr>
+<!-- 온클릭이미지 종료-->
+<!-- 버튼이미지 시작 -->
+<tr>
+<td>
+<img src="https://semantic-ui.com/images/logo.png" width="100" onclick="showMenu('nb');">
+<img src="https://uiuxassets.com/wp-content/uploads/app-icon-keynote.png" width="100" onclick="showMenu('job');">
+<img src="https://uiuxassets.com/wp-content/uploads/app-icon-photoshop.png" width="100" onclick="showMenu('hib');">
+<img src="http://www.independent.co.uk/sites/all/themes/ines_themes/independent_theme/img/twitter.png" width="100" onclick="showMenu('jub');">
+</td>
+</tr>
+<!-- 버튼이미지 종료 -->
+</table>
+</td>
+<td><img src="images/newbest.jpg"></td>
+</tr>
+</table>
+</table>
+<!-- 메인메뉴 종료 -->
+</td></tr>
+</table>
+<!-- 화면전체 종료 -->
+</body>
+</html>

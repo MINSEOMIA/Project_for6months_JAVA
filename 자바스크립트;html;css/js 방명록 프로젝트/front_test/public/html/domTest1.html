@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=()=>{
+	let e1 = document.getElementById("div2");
+	console.log("div2.innerHTML:"+e1.innerHTML);
+	console.log("div2.id:"+e1.id);
+	
+	let e2 = document.getElementsByTagName("h1");
+	for(i=0;i<e2.length;i++){
+		console.log("h1.innerHTML:"+e2[i].innerHTML);
+		console.log("h1.className:"+e2[i].className);
+		console.log("h1.id:"+e2[i].id);
+	}
+	
+	let e3 = document.getElementsByClassName("d");
+	for(i=0;i<e3.length;i++){
+		console.log("class가 d인 요소의 innerHTML:"+e3[i].innerHTML);
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1" class="d">aaa</div>
+<h1 class="x" id="h1">bbb</h1>
+<h1 class="d" id="h2">ccc</h1>
+<h1 class="x" id="h3">ddd</h1>
+<div id="div2" class="d">eee</div>
+
+</body>
+</html>

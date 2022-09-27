@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<title>초 미니홈피</title>
+<script type="text/javascript">
+let cnt = 0;//글번호
+
+//글추가
+const add = () => {
+	cnt++;
+	let writer = f1.writer.value;
+	let content = f1.content.value;
+	let pwd = f1.pwd.value;
+	//let article = {'num':cnt, 'writer':writer, 'content':content, 'pwd':pwd};
+	//글 하나 출력할 div 요소 생성
+	let div = document.createElement("div");
+	div.setAttribute("id", "div_"+cnt);
+// 	div.setAttribute("num", cnt);
+// 	div.setAttribute("writer", writer);
+// 	div.setAttribute("content", content);
+// 	div.setAttribute("pwd", pwd);
+	div.style.border = 'solid 2px black';
+	let html = "글번호:"+cnt+"<br/>";
+	html += "닉네임:"+writer+"<br/>";
+	html += "응원댓글:"+content+"<br/>";
+	html += "<input type='button' value='수정' onclick=editForm("+cnt+",'"+writer+"','"+content+"','"+pwd+"')>";
+	html += "<input type='button' value='삭제' onclick='del("+cnt+")'>";
+	div.innerHTML = html;
+	
+	let list = document.getElementById("list");
+	list.appendChild(div);
+	clear();
+}
+
+const clear = () => {
+	f1.writer.value = "";
+	f1.content.value = "";
+	f1.pwd.value = "";
+}
+
+const editForm = (num, writer, content, pwd) => {
+
+	let eform = document.getElementById("f2");//수정폼
+	let div = document.getElementById("div_"+num);
+	let body = document.getElementsByTagName("body")[0];
+	body.removeChild(eform);
+	div.appendChild(eform);
+
+	let aNum = document.getElementById("num");
+	aNum.innerHTML = num;
+	let awriter = document.getElementById("writer2");
+	awriter.value = writer;
+	let acontent = document.getElementById("content2");
+	acontent.value = content;
+	eform.style.display = '';
+}
+
+const cancel = () => {
+	let eform = document.getElementById("f2");//수정폼
+	let aNum = document.getElementById("num");
+	let num = aNum.innerHTML;
+	let div = document.getElementById("div_"+num);
+	let body = document.getElementsByTagName("body")[0];
+	div.removeChild(eform);
+	body.appendChild(eform);
+	
+	aNum.innerHTML = "";
+	let awriter = document.getElementById("writer2");
+	awriter.value = "";
+	let acontent = document.getElementById("content2");
+	acontent.value = "";
+	eform.style.display = 'none';
+	
+	
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet"> <!--폰트링크 -->
+<style>
+* {
+            font-family: 'Single Day', cursive;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+     .mypic {
+            width: 100%;
+            height: 500px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('https://pbs.twimg.com/media/FHs0S0yUUAA8Bao?format=jpg&name=4096x4096');
+            background-position: center 30%;
+            background-size: cover;
+
+            
+            color: pink;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }    
+        
+        .wrap {
+		  background-image: url('https://pbs.twimg.com/media/FBt4Jz8VkAEkhEP.jpg');
+		  background-size: cover;
+		  background-position: bottom;
+		  border-radius: 10px;
+		  margin: 20px auto 20px auto;
+		}
+		
+		.mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 20px auto;
+            border-radius: 10px;
+            
+            background-image: url('https://pbs.twimg.com/media/FTqULC4aMAA-8Mv.jpg:large');
+		    background-size: cover;
+		    background-position: center;
+		    border-radius: 10px;
+		  margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 1px 0px black;
+            padding: 10px;
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+        }
+		
+        .card {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 10px;
+        
+        }
+
+        .mycards > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        
+</style>
+</head>
+<body>
+<div class="mypic">
+        <h1> ✨💖콩순이 팬명록✨💖</h1>
+        <p>실시간마음온도: <span id="temp">36</span>도</p>
+    </div>
+<div class="wrap">
+ <div class="mypost">
+ <form name="f1" id="f1" action="">
+	닉네임:<input type="text" name="writer" id="writer" style='margin-left:100px'><br/>
+	응원댓글:<textarea class="asd" name="content" id="content" style='margin-left:84px'></textarea><br/>
+	비번:<input type="password"  name="pwd" id="pwd" style='margin-left:116px'><br/>
+	<input type="button" value="작성" onclick="add()" class="btn btn-primary" style='margin-left:400px'>
+ </form>
+ </div>
+ <h4> </h4>
+ <div class="card" id="list">
+
+ </div>
+ <form name="f2" id="f2" action="" style="display:none">
+	글번호:<span id="num"></span><br/>
+	닉네임:<input type="text" name="writer2" id="writer2"><br/>
+	응원댓글:<textarea rows=5 cols=25 name="content2" id="content2"></textarea><br/>
+	비번:<input type="password" name="pwd2" id="pwd2"><br/>
+	<input type="button" value="수정완료" onclick="edit()">
+	<input type="button" value="수정취소" onclick="cancel()">
+ </form>
+ 	
+</div>
+</body>

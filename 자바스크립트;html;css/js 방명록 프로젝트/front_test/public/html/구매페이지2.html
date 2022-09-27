@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+let prods = [{'num':1, 'name':'뽀로로', 'price':5000, 'imgs':['lufy.jpg', 'naver.jpg', 'daum.png'], 
+				'info':'노는게 제일 좋아', cnt:0, 'payment':0},
+			{'num':2, 'name':'루피', 'price':6000, 'imgs':['naver.jpg', 'lufy.jpg', 'daum.png'], 
+				'info':'먹는게 제일 좋아', cnt:0, 'payment':0},
+			{'num':3, 'name':'크롱', 'price':7000, 'imgs':['daum.png', 'lufy.jpg', 'naver.jpg'], 
+				'info':'자는게 제일 좋아', cnt:0, 'payment':0},
+			{'num':4, 'name':'에디', 'price':8000, 'imgs':['lufy.jpg', 'daum.png', 'naver.jpg'], 
+				'info':'쉬는게 제일 좋아', cnt:0, 'payment':0},
+			];
+			
+window.onload=function(){
+	let listDiv = document.getElementById("prodList");
+	for(i=0;i<prods.length;i++){
+		let obj = prods[i];
+		let html = "<table border='1'>";
+		html += "<tr>";
+		html += "<td rowspan='5'><img id='bigimg_"+obj.num+"' src='../img/"+obj.imgs[0]+"' style='width:200px;height:200px'><br/>";
+		for(j=0;j<obj.imgs.length;j++){
+			html += "<img src='../img/"+obj.imgs[j]+"' style='width:65px;height:65px'>";
+		}
+		html += "</td>";
+		
+		html += "<td>상품명</td>";
+		html += "<td id='prodName_"+obj.num+"'>";
+		html += obj.name;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>상품설명</td>";
+		html += "<td>";
+		html += obj.info;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>가격</td>";
+		html += "<td id='price_"+obj.num+"'>";
+		html += obj.price;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>주문수량</td>";
+		html += "<td>";
+		html += "<select id='cnt_"+obj.num+"'>";
+		html += "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>";
+		html += "</select>";
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>결제금액</td>";
+		html += "<td id='res_"+obj.num+"'>";
+		
+		html += "</td>";
+		html += "</tr>";
+		html += "</table>";
+		listDiv.innerHTML += html;
+	}
+}
+</script>
+</head>
+<body>
+<h3>구매 페이지</h3>
+<div id="prodList">
+
+</div>
+</body>
+</html>

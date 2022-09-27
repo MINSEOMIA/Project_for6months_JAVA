@@ -1,0 +1,15 @@
+@charset "UTF-8";
+h1{
+	background-color:black;
+	color:white;
+}
+
+.c1{
+	background-color:blue;
+}
+.c2{
+	background-color:yellow;
+}
+#f{
+	background-color: red;
+}

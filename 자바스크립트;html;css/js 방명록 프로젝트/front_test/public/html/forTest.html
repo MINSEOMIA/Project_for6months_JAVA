@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function a(num){
+	alert(num);
+}
+</script>
+</head>
+<body>
+<script>
+let i;
+for(i=0;i<10;i++){
+	document.write(i+"<br/>");
+}
+
+//배열 정의
+let arr = ["aaa", "bbb", "ccc"];
+for(i=0;i<arr.length;i++){
+	document.write(arr[i]+"<br/>");
+}
+</script>
+<form action="">
+<script>
+for(i=0;i<5;i++){
+	document.write("<input type='button' value='btn"+i+"' onclick=a("+i+")>");
+}
+</script>
+</form>
+<h3>구구단</h3>
+<table border="1">
+<script>
+for(i=0;i<2;i++){//줄생성
+	document.write("<tr>");
+	for(j=2;j<10;j++){//칸 생성
+		document.write("<td>");
+		if(i==0){
+			document.write(j+" 단");
+		}else{
+			for(k=1;k<10;k++){
+				document.write(j+" * "+k+" = "+(j*k)+"<br/>");
+			}
+		}
+		document.write("</td>");
+	}
+	document.write("</tr>");
+}
+</script>
+</table>
+</body>
+</html>

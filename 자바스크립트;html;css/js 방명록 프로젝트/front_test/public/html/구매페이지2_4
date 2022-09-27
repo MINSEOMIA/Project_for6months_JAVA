@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+let prods = [{'num':1, 'name':'뽀로로', 'price':5000, 'imgs':['lufy.jpg', 'naver.jpg', 'daum.png'], 
+				'info':'노는게 제일 좋아'},
+			{'num':2, 'name':'루피', 'price':6000, 'imgs':['naver.jpg', 'lufy.jpg', 'daum.png'], 
+				'info':'먹는게 제일 좋아'},
+			{'num':3, 'name':'크롱', 'price':7000, 'imgs':['daum.png', 'lufy.jpg', 'naver.jpg'], 
+				'info':'자는게 제일 좋아'},
+			{'num':4, 'name':'에디', 'price':8000, 'imgs':['lufy.jpg', 'daum.png', 'naver.jpg'], 
+				'info':'쉬는게 제일 좋아'},
+			];
+
+//장바구니
+let orders = [];
+
+function a(path, num){
+	let el = document.getElementById("bigimg_"+num);
+	el.src = path;
+}
+
+//상품 번호로 검색 메서드
+function getProd(num){//num: 검색할 상품 번호
+	for(i=0;i<prods.length;i++){
+		if(prods[i].num == num){
+			return prods[i];
+		}
+	}
+	return null;
+}
+
+function b(num){
+	let el = document.getElementById("cnt_"+num);
+	let cnt = parseInt(el.value);//주문수량
+	let prod = getProd(num);
+	if(prod==null){
+		alert("잘못된 상품 번호");
+		return;
+	}
+	let payment = prod.price * cnt;//결제금액
+	let el2 = document.getElementById("res_"+num);
+	el2.innerHTML = payment;
+}
+
+let orderNum=0;//주문번호
+
+//장바구니에 담는 함수
+function c(num){//num: 상품번호
+	//선택한 상품
+	let prod = getProd(num);//상품 객체 검색
+	
+	//주문 수량
+	let el = document.getElementById("cnt_"+num);
+	let cnt = parseInt(el.value);
+	
+	//결제금액
+	let el2 = document.getElementById("res_"+num);
+	let payment = el2.innerHTML;
+	
+	orders[orders.length]={'orderNum':++orderNum, 'prod':prod, 'cnt':cnt, 'payment':payment};
+	printOrderList();
+}
+
+function del(orderNum){
+	for(i=0;i<orders.length;i++){
+		if(orderNum == orders[i].orderNum){
+			for(j=i;j<orders.length-1;j++){
+				orders[j]=orders[j+1];
+			}
+			orders.pop();
+			break;
+		}
+	}
+	printOrderList();
+}
+
+function printOrderList(){
+	let el = document.getElementById("orderList");
+	let html = "<table border='1'>";
+	html += "<tr><th>이미지</th><th>상품명</th><th>가격</th><th>주문수량</th><th>결제금액</th><th>취소</th></tr>";
+	for(i=0;i<orders.length;i++){
+		let obj = orders[i];
+// 		if(obj==null){
+// 			continue;
+// 		}
+		html += "<tr>";
+		html += "<td><img src='../img/"+obj.prod.imgs[0]+"' style='width:50px;height:50px'></td>";
+		html += "<td>"+obj.prod.name+"</td>";
+		html += "<td>"+obj.prod.price+"</td>";
+		html += "<td>"+obj.cnt+"</td>";
+		html += "<td>"+obj.payment+"</td>";
+		html += "<td><input type='button' value='삭제' onclick=del("+obj.orderNum+")></td>";
+		html += "</tr>";
+	}
+	html += "</table>";
+	el.innerHTML = html;
+}
+
+window.onload=function(){
+	let listDiv = document.getElementById("prodList");
+	for(i=0;i<prods.length;i++){
+		let obj = prods[i];
+		let html = "<table border='1'>";
+		html += "<tr>";
+		html += "<td rowspan='6'><img id='bigimg_"+obj.num+"' src='../img/"+obj.imgs[0]+"' style='width:200px;height:200px'><br/>";
+		for(j=0;j<obj.imgs.length;j++){
+			html += "<img src='../img/"+obj.imgs[j]+
+			"' style='width:65px;height:65px' onmouseover=a('../img/"+obj.imgs[j]+"',"+obj.num+")>";
+		}
+		html += "</td>";
+		
+		html += "<td>상품명</td>";
+		html += "<td>";
+		html += obj.name;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>상품설명</td>";
+		html += "<td>";
+		html += obj.info;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>가격</td>";
+		html += "<td>";
+		html += obj.price;
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>주문수량</td>";
+		html += "<td>";
+		html += "<select id='cnt_"+obj.num+"' onclick=b("+obj.num+")>";
+		html += "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>";
+		html += "</select>";
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>결제금액</td>";
+		html += "<td id='res_"+obj.num+"'>";
+		
+		html += "</td>";
+		html += "</tr>";
+		
+		html += "<tr>";
+		html += "<td>결제</td>";
+		html += "<td><input type='button' value='즉시결제'>";
+		html += "<input type='button' value='장바구니' onclick=c("+obj.num+")>";
+		html += "</td>";
+		html += "</tr>";
+
+		html += "</table>";
+		listDiv.innerHTML += html;
+	}
+}
+</script>
+</head>
+<body>
+<h3>구매 페이지</h3>
+<div id="prodList">
+
+</div>
+<h3>장바구니</h3>
+<div id="orderList">
+
+</div>
+</body>
+</html>

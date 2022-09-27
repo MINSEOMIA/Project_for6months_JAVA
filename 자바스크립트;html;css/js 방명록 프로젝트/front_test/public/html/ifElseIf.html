@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function a(){
+	let score = parseInt(f1.s1.value);
+	if(score>100 || score<0){
+		alert("잘못된 점수. 다시 입력하시오");
+		f1.s1.value = "";//텍스트 박스 내용 지움
+		return;//함수 종료
+	}
+	let str = "";
+	if(score>=90){
+		str = "A";
+	}else if(score>=80){
+		str = "B";
+	}else if(score>=70){
+		str = "C";
+	}else if(score>=60){
+		str = "D";
+	}else{
+		str = "F";
+	}
+	let res = document.getElementById("res1");
+	res.innerHTML = str+"학점";
+}
+</script>
+</head>
+<body>
+<h3>학점 확인</h3>
+<form name="f1">
+score:<input type="text" name="s1">
+<input type="button" value="확인" onclick="a()">
+<div id="res1"></div>
+</form>
+</body>
+</html>
